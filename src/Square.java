@@ -14,6 +14,10 @@ public class Square {
         }
     }
 
+    public void reset() {
+        piece = null;
+    }
+
     public void flip() throws InvalidMoveException {
         if(!isOccupied()) {
             throw new InvalidMoveException("Square is empty.");

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CS2Week07Materials.iml" filepath="$PROJECT_DIR$/CS2Week07Materials.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CS2Week07Studio.iml" filepath="$PROJECT_DIR$/CS2Week07Studio.iml" />
     </modules>
   </component>
 </project>
