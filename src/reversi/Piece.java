@@ -8,11 +8,11 @@ public class Piece {
     }
 
     public void flip() {
-        color = color == Color.WHITE ? Color.BLACK : Color.WHITE;
+        color = color.toggle();
     }
 
     @Override
     public String toString() {
-        return Character.toString(color.toString().charAt(0));
+        return color.getSymbol();
     }
 }
