@@ -1,3 +1,5 @@
+package reversi;
+
 public class Piece {
     private Color color;
 

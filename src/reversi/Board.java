@@ -1,3 +1,5 @@
+package reversi;
+
 public class Board {
     private static final int ROWS = 8;
     private static final int COLS = 8;

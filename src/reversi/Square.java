@@ -1,3 +1,5 @@
+package reversi;
+
 public class Square {
 
     private Piece piece;
@@ -8,7 +10,7 @@ public class Square {
 
     public void occupy(Piece piece) throws InvalidMoveException {
         if(isOccupied()) {
-            throw new InvalidMoveException("Square is already occupied");
+            throw new InvalidMoveException("reversi.Square is already occupied");
         } else {
             this.piece = piece;
         }
@@ -20,7 +22,7 @@ public class Square {
 
     public void flip() throws InvalidMoveException {
         if(!isOccupied()) {
-            throw new InvalidMoveException("Square is empty.");
+            throw new InvalidMoveException("reversi.Square is empty.");
         } else {
             piece.flip();
         }
