@@ -6,11 +6,11 @@ public class Piece {
     }
 
     public void flip() {
-        color = color == Color.W ? Color.B : Color.W;
+        color = color == Color.WHITE ? Color.BLACK : Color.WHITE;
     }
 
     @Override
     public String toString() {
-        return color.toString();
+        return Character.toString(color.toString().charAt(0));
     }
 }
