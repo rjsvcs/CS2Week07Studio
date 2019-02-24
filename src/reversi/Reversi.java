@@ -34,6 +34,15 @@ public class Reversi {
                     case "help":
                         help();
                         break;
+                    case "save":
+                        save(command);
+                        break;
+                    case "load":
+                        load(command);
+                        break;
+                    default:
+                        invalid(command);
+                        break;
                 }
             }
             System.out.println("Good bye!");
@@ -45,8 +54,12 @@ public class Reversi {
      */
     private static void help() {
         System.out.println("Available commands: ");
-        System.out.println("  quit - quits the game");
+        System.out.println("  help - displays this message");
+        System.out.println("  load <filename> - loads a saved game");
         System.out.println("  move R C - makes a move for the current player");
+        System.out.println("  pass - forfeits this turn");
+        System.out.println("  quit - quits the game");
+        System.out.println("  save <filename> - saves the current game");
         System.out.println();
     }
 
@@ -87,5 +100,34 @@ public class Reversi {
      */
     private static void pass(Board board) {
         board.pass();
+    }
+
+    /**
+     * Displays an invalid command message.
+     *
+     * @param command The invalid command.
+     */
+    private static void invalid(String[] command) {
+        System.out.println("Invalid command: " + command[0]);
+    }
+
+    /**
+     * Saves the current game progress to a specified file.
+     *
+     * @param command The command array; should be length of 2 and contain
+     *                the filename in index 1.
+     */
+    private static void save(String[] command) {
+        throw new NotImplemtedException("save");
+    }
+
+    /**
+     * Loads an in-progress game from a specified file.
+     *
+     * @param command The command array; should be length of 2 and contain
+     *                the filename in index 1.
+     */
+    private static void load(String[] command) {
+        throw new NotImplemtedException("load");
     }
 }
