@@ -3,7 +3,8 @@ package reversi;
 public class Board {
     private static final int ROWS = 8;
     private static final int COLS = 8;
-    private static final String ROW_SEPARATOR = "-----------------\n";
+    private static final String ROW_HEADER = "   0 1 2 3 4 5 6 7\n";
+    private static final String ROW_SEPARATOR = "  -----------------\n";
 
     private final Square[][] board;
 
@@ -38,20 +39,29 @@ public class Board {
         }
     }
 
-    public void play(int row, int col) throws BadMoveException {
-        if(row < 0 || row >= ROWS || col < 0 || col >= COLS) {
-            throw new BadMoveException("Invalid Location: " +
-                    row + "," + col);
-        } else {
-            board[row][col].occupy(new Piece(turn));
-            turn = turn == Color.BLACK ? Color.WHITE : Color.BLACK;
-        }
+    public void move(int row, int col) throws BadMoveException {
+        board[row][col].occupy(new Piece(turn));
+        pass();
+    }
+
+    public void pass() {
+        turn = turn == Color.BLACK ? Color.WHITE : Color.BLACK;
+    }
+
+    public Color getCurrentPlayer() {
+        return turn;
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder(ROW_SEPARATOR);
+        // using a string builder is more efficient than concatenation
+        // (it also makes the IntelliJ warnings go away)
+        StringBuilder builder = new StringBuilder(ROW_HEADER);
+        builder.append(ROW_SEPARATOR);
+        int column = 0;
         for(Square[] row : board) {
+            builder.append(column++);
+            builder.append(" ");
             for(Square square : row) {
                 builder.append("|");
                 builder.append(square);
