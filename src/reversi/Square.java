@@ -4,13 +4,24 @@ public class Square {
 
     private Piece piece;
 
+    public Square() {
+        piece = null;
+    }
+
+    public Square(char symbol) {
+        Color color = Color.getColor(symbol);
+        if(color != null) {
+            piece = new Piece(color);
+        }
+    }
+
     public boolean isOccupied() {
         return piece != null;
     }
 
-    public void occupy(Piece piece) throws InvalidMoveException {
+    public void occupy(Piece piece) throws BadMoveException {
         if(isOccupied()) {
-            throw new InvalidMoveException("Square is already occupied");
+            throw new BadMoveException("Square is already occupied");
         } else {
             this.piece = piece;
         }
@@ -20,9 +31,9 @@ public class Square {
         piece = null;
     }
 
-    public void flip() throws InvalidMoveException {
+    public void flip() throws BadMoveException {
         if(!isOccupied()) {
-            throw new InvalidMoveException("Square is empty.");
+            throw new BadMoveException("Square is empty.");
         } else {
             piece.flip();
         }

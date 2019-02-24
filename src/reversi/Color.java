@@ -10,6 +10,21 @@ public enum Color {
         this.symbol = symbol;
     }
 
+    public static Color getColor(char symbol) {
+        Color color;
+        switch(symbol) {
+            case 'B':
+                color = Color.BLACK;
+                break;
+            case 'W':
+                color = Color.WHITE;
+                break;
+            default:
+                color = null;
+        }
+        return color;
+    }
+
     public String getSymbol() {
         return symbol;
     }

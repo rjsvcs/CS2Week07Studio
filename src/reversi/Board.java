@@ -33,14 +33,14 @@ public class Board {
             board[3][4].occupy(new Piece(Color.WHITE));
             board[4][3].occupy(new Piece(Color.WHITE));
             board[4][4].occupy(new Piece(Color.BLACK));
-        } catch(InvalidMoveException ime) {
+        } catch(BadMoveException ime) {
             // squash
         }
     }
 
-    public void play(int row, int col) throws InvalidMoveException {
+    public void play(int row, int col) throws BadMoveException {
         if(row < 0 || row >= ROWS || col < 0 || col >= COLS) {
-            throw new InvalidMoveException("Invalid Location: " +
+            throw new BadMoveException("Invalid Location: " +
                     row + "," + col);
         } else {
             board[row][col].occupy(new Piece(turn));
