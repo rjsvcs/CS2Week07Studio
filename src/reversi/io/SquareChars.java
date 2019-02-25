@@ -12,8 +12,8 @@ import java.util.List;
  */
 public class SquareChars {
     /**
-     * Writes the specified {@link List} of {@Square squares} to the file with
-     * the specified name.
+     * Writes the specified {@link List} of {@link Square squares} to the file
+     * with the specified name.
      * @param squares The {@link List} of {@link Square squares} to write out
      *                to the file.
      * @param filename The name of the file into which the squares should be
