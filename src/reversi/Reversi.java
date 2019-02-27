@@ -86,11 +86,7 @@ public class Reversi {
         } else {
             int row = Integer.parseInt(command[1]);
             int col = Integer.parseInt(command[2]);
-            try {
-                board.move(row, col);
-            } catch(BadMoveException bme) {
-                System.err.println(bme.getMessage());
-            }
+            board.move(row, col);
         }
     }
 
