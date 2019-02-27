@@ -40,6 +40,16 @@ public class Square {
     }
 
     /**
+     * Returns the currently face-up color of the piece on this square (or
+     * null if there is no piece).
+     *
+     * @return The currently face-up color of the piece on this square.
+     */
+    public Color getOccupyingColor() {
+        return isOccupied() ? piece.getFaceUpColor() : null;
+    }
+
+    /**
      * Attempts to play a piece on the square.
      *
      * @param piece The piece being played on the square.

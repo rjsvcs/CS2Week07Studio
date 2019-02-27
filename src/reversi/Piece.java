@@ -26,6 +26,15 @@ public class Piece {
     }
 
     /**
+     * Returns the currently face-up color of the piece.
+     *
+     * @return The currently face-up color of the piece.
+     */
+    public Color getFaceUpColor() {
+        return color;
+    }
+
+    /**
      * Returns a {@link String} with the currently face-up {@link Color
      * Color's} short symbol (e.g. "B" for {@link Color#BLACK}).
      *

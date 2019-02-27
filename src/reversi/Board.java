@@ -1,5 +1,7 @@
 package reversi;
 
+import java.util.*;
+
 /**
  * A class to represent a Reversi board. Includes all of the logic for making
  * and validating moves as well as which player is currently taking a turn.
@@ -79,13 +81,10 @@ public class Board {
      *
      * @param row The row on which the player would like to play a piece.
      * @param col The column on which the player would like to play a piece.
-     *
-     * @throws BadMoveException If the move is invalid, e.g. the square at the
-     * specified location already has a piece on it.
      */
-    public void move(int row, int col) throws BadMoveException {
-        board[row][col].occupy(new Piece(turn));
-        pass();
+    public void move(int row, int col) {
+
+
     }
 
     /**
@@ -147,5 +146,60 @@ public class Board {
         }
 
         return builder.toString();
+    }
+
+    /**
+     * Returns all of the squares that should potentially be flipped after the
+     * current player plays a piece at the specified location.
+     *
+     * @param row The row of the play.
+     * @param col The column of the play.
+     *
+     * @return The collection of all squares that should be flipped after the
+     * play.
+     */
+    private Collection<Square> searchAll(int row, int col) {
+        Collection<Square> squares = new HashSet<>();
+        squares.addAll(searchDir(row, col, Direction.TOP));
+        squares.addAll(searchDir(row, col, Direction.TOP_RIGHT));
+        squares.addAll(searchDir(row, col, Direction.RIGHT));
+        squares.addAll(searchDir(row, col, Direction.BOTTOM_RIGHT));
+        squares.addAll(searchDir(row, col, Direction.BOTTOM));
+        squares.addAll(searchDir(row, col, Direction.BOTTOM_LEFT));
+        squares.addAll(searchDir(row, col, Direction.LEFT));
+        squares.addAll(searchDir(row, col, Direction.TOP_LEFT));
+        return squares;
+    }
+
+    /**
+     * Searches in the given direction.
+     *
+     * @param row The row at which the search starts.
+     * @param col The column at which the search starts.
+     * @param d The direction of the search.
+     * @return The list of opposing pieces.
+     */
+    private List<Square> searchDir(int row, int col, Direction d ) {
+        List<Square> squares = new ArrayList<>();
+        for(int r=row+d.getRowMod(), c=col+d.getColMod();
+            r>=0 && r<ROWS && c>=0 && c<COLS;
+            r=r+d.getRowMod(), c=c+d.getColMod()) {
+
+            Square square = board[r][c];
+            Color color = square.getOccupyingColor();
+            if (color == null) {
+                squares.clear();
+                return squares;
+            } else if (color == getCurrentPlayer()) {
+                // found an enclosing square!
+                return squares;
+            } else {
+                // add this to the list of potential squares
+                squares.add(square);
+            }
+        }
+        // did not find an enclosing square
+        squares.clear();
+        return squares;
     }
 }
